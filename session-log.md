@@ -120,7 +120,7 @@ Most of my steps used one tool, the **terminal (Bash)**. It runs commands that r
 - Some smaller goals were very precise. "The skill is in ~/.claude/skills" was checked by the fingerprints.
 - "The student must be able to explain every result" is a judgment. You can't check it with a command. I checked it by asking you questions, and slowed down when an answer was thin.
 
-2026-10-29, after part 3: the student opened Claude Code in another folder and saw folder-context in the skill list, under "Organizing and memory".
+2026-10-29, after part 3: the student opened a new Claude Code session and saw folder-context in the skill list, under "Organizing and memory". Corrected 2026-11-02: this line first said the session ran "in another folder". It ran in the course folder, which has its own copy of the skill, so it does not prove that the home-folder install works. Not yet checked from another folder.
 
 ## GitHub page: link to the page's repository
 Date: 2026-10-29
@@ -128,3 +128,61 @@ Date: 2026-10-29
 What the student did: Asked what the course instruction about linking a repository meant. Gave the agent their GitHub username. Approved one new line in my-page/index.md. Uploaded index.md to the repository katrinatronsaune.github.io on GitHub.
 
 Result (agent's check): https://katrinatronsaune.github.io shows the page with the student's name and the line "The repository for this page: katrinatronsaune.github.io". The link points to https://github.com/katrinatronsaune/katrinatronsaune.github.io.
+
+## Session 2, part 1: tools, the agent loop, and a goal that can be checked
+Date: 2026-11-02
+
+Set-up: the agent found session 2 in ~/Downloads/AABE, read it, and copied session2/ and skills/anti-ai-writing into the course folder after the student's OK. The hashes of all copied files match the originals. The student is a first-year student: in part 2 they do the MST 0441 task, and they skip part 5.
+
+What the student did: Watched the video for part 1. Went through part 1 with the agent. Split a business decision into prediction and judgment, using a grocery store ordering food. Ran the small task. Answered what a tool is and how the agent loop works and ends. Rewrote "Help me prepare for the exam" into a goal that can be checked: "By 20 November I need to be able to solve 5 Kuhn Tucker problems from old exams. I need to be able to solve them by myself, and provide the right answer to you and in addition explain how to solve these problems in general."
+
+Result of the small task (agent's answer, as given):
+
+**Tools I can use in this folder**
+
+Files and commands:
+- **Terminal (Bash):** runs commands that list, copy, move or search files, and runs programs such as Python.
+- **Read:** opens a file and shows me its contents.
+- **Write:** creates a new file or replaces a whole file.
+- **Edit:** changes one exact piece of text in a file.
+
+The web:
+- **Built-in browser:** opens web pages in a pane in this app and reads them. I used it to check your GitHub page.
+- **Web search and web fetch:** search the web and read single pages. They're available but not loaded yet.
+- **Claude in Chrome:** acts in your own Chrome browser, with your sign-ins. Not loaded, and I only use it if you ask.
+
+Working with you:
+- **Question tool:** asks you questions with buttons. I used it for the thesis folder.
+- **Task list and next-step box:** show my plan under my message and the question at the end of a turn.
+- **Your terminal panel:** reads or runs commands in the terminal tab beside this chat.
+
+Other:
+- **Subagents:** start a helper agent for a separate piece of work.
+- **Artifacts and documents:** publish a web page or document on claude.ai, private by default.
+- **Skills:** load a skill's full instructions, such as folder-context.
+- **Scheduled tasks:** run a task at a set time.
+
+I don't have the MCP servers from part 2 yet. They aren't connected.
+
+**The goal, rewritten three times**
+
+**Start:** "Make my GitHub page better."
+There's no way to check this. "Better" could mean prettier, longer, more correct or anything else.
+
+**Version 1:** "Make my GitHub page show what I have done in the course."
+- *What changed:* "better" now means *content*, not looks.
+- *Still unclear:* which work, how much of it, and in what form.
+
+**Version 2:** "My page at katrinatronsaune.github.io has one line for each session I have finished, and each line links to something I made in that session."
+- *What changed:* it names the exact page. It says what each line must contain, and every finished session needs one.
+- *You can check:* count the finished sessions, then count the lines.
+- *Still unclear:* whether the links work, and when it must be done.
+
+**Version 3:** "By a date I set, katrinatronsaune.github.io shows my name, my degree line, and the list 'What I built in this course' with one line per finished session. Each line links to a file in my repository, and every link opens without an error. catchphrase_check.py finds no BAN phrases on the page."
+- *What changed:* a deadline. Every link must work. The language is checked by a program, not by taste.
+- *You can check every point:* open the page, click each link, run the script, and look at the date.
+
+Gaps the agent pointed out in version 3:
+1. **"By a date I set."** No date is actually written down, so you can't check whether it was met. A real goal would say, for example, "by the session 2 deadline on Tavlai." I haven't checked when that is.
+2. **"Each session I have finished."** Who decides when a session is finished? You could tie it to the log: "a session counts as finished when session-log.md has an entry for its last part."
+3. **What must not change.** The goal doesn't say to keep what's already there. An agent could rewrite your name line or remove the repository link and still meet every point. Add: "Keep the existing lines unchanged."
